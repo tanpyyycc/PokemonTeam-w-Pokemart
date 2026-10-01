@@ -46,6 +46,7 @@ export class PokemonStoreService {
     { id: 10, name: 'Rare Candy', price: 4800, category: 'Valuable' }
   ]);
 
+  // Explicit type definition prevents the "never[]" compilation error
   private cart = signal([]);
 
   readonly pokemons = this.pokemonList.asReadonly();
