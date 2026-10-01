@@ -16,7 +16,7 @@ export interface MartItem {
 }
 
 @Injectable({ providedIn: 'root' })
-export class PokemonMartService {
+export class PokeMartService {
   // 1. Regional Pokémon Collections (6 Favorite Pokémon across Kanto, Johto, Hoenn)
   pokemons = signal([
     // Kanto
@@ -44,11 +44,9 @@ export class PokemonMartService {
     { id: 110, name: 'Max Repel', price: 700 }
   ]);
 
-  // 3. Cart State Management
   private cartItems = signal([]);
   cart = this.cartItems.asReadonly();
 
-  // 4. Computed Total Price (Automatically tracks updates)
   totalPrice = computed(() => 
     this.cartItems().reduce((sum, item) => sum + item.price, 0)
   );
