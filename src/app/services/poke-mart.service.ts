@@ -24,7 +24,6 @@ export interface CartItem {
   providedIn: 'root'
 })
 export class PokemonStoreService {
- 
   private pokemonList = signal([
     { name: 'Charizard', type: 'Fire / Flying', heldItem: 'Charizardite X', description: 'Spits fire that is hot enough to melt boulders.', region: 'Kanto' },
     { name: 'Pikachu', type: 'Electric', heldItem: 'Light Ball', description: 'It has small electric sacs on its cheeks.', region: 'Kanto' },
@@ -34,7 +33,6 @@ export class PokemonStoreService {
     { name: 'Gardevoir', type: 'Psychic / Fairy', heldItem: 'Choice Specs', description: 'It has the psychokinetic power to distort dimensions.', region: 'Hoenn' }
   ]);
 
-  // PokéMart Inventory (10 items)
   private martItems = signal([
     { id: 1, name: 'Poké Ball', price: 200, category: 'Ball' },
     { id: 2, name: 'Great Ball', price: 600, category: 'Ball' },
@@ -48,20 +46,16 @@ export class PokemonStoreService {
     { id: 10, name: 'Rare Candy', price: 4800, category: 'Valuable' }
   ]);
 
-  // Cart State Signal
   private cart = signal([]);
 
-  // Expose Getters
   readonly pokemons = this.pokemonList.asReadonly();
   readonly items = this.martItems.asReadonly();
   readonly cartItems = this.cart.asReadonly();
 
-  // Computed signal for total amount to pay
   readonly cartTotal = computed(() => {
     return this.cart().reduce((total, curr) => total + (curr.item.price * curr.quantity), 0);
   });
 
-  // Cart Actions
   addToCart(item: MartItem) {
     this.cart.update(currentCart => {
       const existingIndex = currentCart.findIndex(ci => ci.item.id === item.id);

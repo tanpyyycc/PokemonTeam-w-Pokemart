@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
-import { PokemartComponent } from './components/pokemart/pokemart.component';
+import { Home } from './home/home';
+import { PokemonList } from './pokemon-list/pokemon-list';
+import { PokeMart } from './poke-mart/poke-mart';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'pokemon', component: PokemonListComponent },
-  { path: 'pokemart', component: PokemartComponent },
+  { path: '', component: Home },
+  { path: 'pokemon', component: PokemonList },
+  { path: 'pokemart', component: PokeMart },
   { path: '**', redirectTo: '' }
 ];
