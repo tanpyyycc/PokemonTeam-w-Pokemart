@@ -23,7 +23,7 @@ export interface CartItem {
 @Injectable({
   providedIn: 'root'
 })
-export class PokemonStoreService {
+export class PokeMartService {
   private pokemonList = signal([
     { name: 'Charizard', type: 'Fire / Flying', heldItem: 'Charizardite X', description: 'Spits fire that is hot enough to melt boulders.', region: 'Kanto' },
     { name: 'Pikachu', type: 'Electric', heldItem: 'Light Ball', description: 'It has small electric sacs on its cheeks.', region: 'Kanto' },
@@ -46,19 +46,19 @@ export class PokemonStoreService {
     { id: 10, name: 'Rare Candy', price: 4800, category: 'Valuable' }
   ]);
 
-  // Explicit type definition prevents the "never[]" compilation error
-  private cart = signal([]);
+  // Explicit type casting forces the compiler out of the never[] inference trap
+  private cart = signal([] as CartItem[]);
 
   readonly pokemons = this.pokemonList.asReadonly();
   readonly items = this.martItems.asReadonly();
   readonly cartItems = this.cart.asReadonly();
 
   readonly cartTotal = computed(() => {
-    return this.cart().reduce((total, curr) => total + (curr.item.price * curr.quantity), 0);
+    return this.cart().reduce((total: number, curr: CartItem) => total + (curr.item.price * curr.quantity), 0);
   });
 
   addToCart(item: MartItem) {
-    this.cart.update(currentCart => {
+    this.cart.update((currentCart: CartItem[]) => {
       const existingIndex = currentCart.findIndex(ci => ci.item.id === item.id);
       if (existingIndex > -1) {
         const updated = [...currentCart];
@@ -70,6 +70,6 @@ export class PokemonStoreService {
   }
 
   removeFromCart(itemId: number) {
-    this.cart.update(currentCart => currentCart.filter(ci => ci.item.id !== itemId));
+    this.cart.update((currentCart: CartItem[]) => currentCart.filter(ci => ci.item.id !== itemId));
   }
 }

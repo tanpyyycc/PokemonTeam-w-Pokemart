@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PokemonStoreService, Pokemon } from '../services/pokemon-store.service';
+import { PokeMartService, Pokemon } from '../services/poke-mart.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -10,5 +10,5 @@ import { PokemonStoreService, Pokemon } from '../services/pokemon-store.service'
   styleUrl: './pokemon-list.css'
 })
 export class PokemonList {
-  store = inject(PokemonStoreService);
+  store = inject(PokeMartService);
 }
