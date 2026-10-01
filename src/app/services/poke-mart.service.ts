@@ -24,7 +24,7 @@ export interface CartItem {
   providedIn: 'root'
 })
 export class PokemonStoreService {
-  // Pokémon Data for Kanto, Johto, and Hoenn regions (6 favorites)
+ 
   private pokemonList = signal([
     { name: 'Charizard', type: 'Fire / Flying', heldItem: 'Charizardite X', description: 'Spits fire that is hot enough to melt boulders.', region: 'Kanto' },
     { name: 'Pikachu', type: 'Electric', heldItem: 'Light Ball', description: 'It has small electric sacs on its cheeks.', region: 'Kanto' },
